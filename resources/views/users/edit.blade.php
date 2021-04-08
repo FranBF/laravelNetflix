@@ -21,7 +21,7 @@
                     <div class="profile mr-3"><a href="#ed" class="btn btn-dark btn-sm btn-block">Edit profile</a></div>
                     <div class="profile mr-3"><a href="{{route('home')}}" class="btn btn-dark btn-sm btn-block">Volver al inicio</a></div>
                     <div class="media-body mb-5 text-white">
-                        <h4 class="mt-0 mb-0">{{Auth::user()->name}}</h4>
+                        <h4 class="mt-0 mb-0">{{$user->name}}</h4>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
     <div id="ed" class="col-lg-12">
 
         <h1 class="my-4">Property edit</h1>
-        <form action="{{route('users.update',Auth::user()->id)}}" method="POST">
+        <form action="{{route('users.update',$user->id)}}" method="POST">
             @csrf
             @method('PUT')
             Name

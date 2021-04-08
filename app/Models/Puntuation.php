@@ -7,12 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Puntuation extends Model
 {
+    protected $fillable=["puntuacion", "user_id", "video_id"];
+    use HasFactory;
+
     public function video(){
-        return $this->belongsToMany(Vide::class, 'id_video');
+        return $this->belongsTo(Vide::class, 'id_video');
     }
 
     public function user(){
-        return $this->belongsToMany(User::class, 'id_user');
+        return $this->belongsTo(User::class, 'id_user');
     }
     use HasFactory;
 }

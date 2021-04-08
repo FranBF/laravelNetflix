@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $fillable=["content", "id_user", "id_video"];
+    protected $fillable = ["content", "user_id", "video_id", "puntuation"];
     use HasFactory;
 
-    public function user(){
-        return $this->belongsToMany(User::class,'id_user');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function video(){
-        return $this->belongsToMany(Video::class,'id_video');
+    public function video()
+    {
+        return $this->belongsTo(Video::class, 'video_id');
     }
 }

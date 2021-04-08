@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('video_id');
             $table->string('content');
+            $table->integer('puntuation');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('video_id')->references('id')->on('videos');

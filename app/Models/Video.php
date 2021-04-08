@@ -8,18 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Video extends Model
 {
     use HasFactory;
-    protected $fillable=['content', 'title', 'category', 'user_id','image','description'];
+    protected $fillable = ['content', 'title', 'category', 'user_id', 'image', 'description'];
 
-    public function comment(){
+    public function comment()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function puntuation(){
+    public function puntuation()
+    {
         return $this->hasMany(Puntuation::class);
     }
 
+    public function report()
+    {
+        return $this->hasMany(Report::class);
+    }
 }

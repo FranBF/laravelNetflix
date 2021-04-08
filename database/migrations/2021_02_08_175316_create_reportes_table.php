@@ -13,13 +13,14 @@ class  CreateReportesTable extends Migration
      */
     public function up()
     {
-        Schema::create('reportes', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_user_reportado');
-            $table->unsignedBigInteger('id_user_reportador');
+        Schema::create('reports', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('video_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('motivo');
             $table->timestamps();
-            $table->foreign('id_user_reportado')->references('id')->on('users');
-            $table->foreign('id_user_reportador')->references('id')->on('users');
+            $table->foreign('video_id')->references('id')->on('videos');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
