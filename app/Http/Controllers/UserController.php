@@ -47,7 +47,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $users = User::all();
+        return view('users.show', compact('users'));
     }
 
     /**
@@ -59,8 +60,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::find($id);
-        $users=User::all();
-        return view('users.edit', compact('user','users'));
+        $users = User::all();
+        return view('users.edit', compact('user', 'users'));
     }
 
     /**
@@ -72,11 +73,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user=User::find($id);
+        $user = User::find($id);
         $user->update([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password)
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
         ]);
         return redirect()->route('home');
     }
@@ -89,9 +90,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $users=User::find($id);
+        $user = User::find($id);
         $user->delete();
-        
-        return redirect()->route('users.index');
+        $users = User::all();
+        return view('users.show', compact("users"));
     }
 }

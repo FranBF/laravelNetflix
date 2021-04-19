@@ -3,27 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Video;
 use App\Models\User;
-use App\Models\Comment;
-use App\Models\Report;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use App\Models\Puntuation;
 
-class VideoController extends Controller
+class PuntuationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function index()
     {
         $videos = Video::all();
-        $reports = Report::all();
-        return view('videos.index', compact('videos', 'reports'));
     }
 
     /**
@@ -31,10 +25,10 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Video $video)
     {
         $user = Auth::user();
-        return view('videos.create');
+        return view('puntuation.create')->with(['video'=>$video]);
     }
 
     /**
@@ -45,17 +39,10 @@ class VideoController extends Controller
      */
     public function store(Request $request)
     {
-        $path = $request->file('video')->store('videos', 'public');
-        $path2 = $request->file('image')->store('images', 'public');
-
-        $videos = Video::create([
-            'user_id' => Auth::user()->id,
-            'title' => $request->title,
-            'category' => $request->category,
-            'content' => $path,
-            'image' => $path2,
-            'description' => $request->description
-
+        $puntuation = Puntuation::create([
+            'user_id'=>Auth::user()->id,
+            'puntuacion'=>$request->puntuacion,
+            'video_id'=>$request->video_id
         ]);
         return redirect()->route('videos.index');
     }
@@ -79,9 +66,7 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        $video = User::find($id);
-        $videos = User::all();
-        return view('videos.edit', compact('video', 'videos'));
+        //
     }
 
     /**
@@ -93,13 +78,7 @@ class VideoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $video = Video::find($id);
-        $video->update([
-            'title' => $request->title,
-            'category' => $request->category,
-            'description' => $request->description,
-        ]);
-        return redirect()->route('videos.index');
+        //
     }
 
     /**
@@ -110,9 +89,6 @@ class VideoController extends Controller
      */
     public function destroy($id)
     {
-        $video = Video::find($id);
-        $video->delete();
-
-        return redirect()->route('videos.index');
+        //
     }
 }

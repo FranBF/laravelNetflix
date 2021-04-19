@@ -5,23 +5,12 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.80.0">
     <title>Album example · Bootstrap v5.0</title>
-
-    {{-- <link href="{{asset('js/form.js')}}"> --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.js"></script>
 
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
-    <script>
-        $(document).ready(function() {
-            $("#comm").hide();
-            $("#comentar").on("click", function() {
-                $("#comm").show();
-            })
-        })
-
-    </script>
 </head>
 
 <header>
@@ -71,19 +60,20 @@
         </div>
     </div>
 </header>
-<link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css">
 <div>
     <table>
         <tr>
-            <th>Name</th>
+            <th>Video id</th>
+            <th>User id</th>
+            <th>Motivo</th>
         </tr>
-        @foreach ($users as $user)
+        @foreach ($reports as $report)
         <tr>
-            <td>{{ $user->name }}</td>
-            <td><a href="{{ route('users.destroy', $user->id) }}"><button type="button"
-                class="btn btn-sm btn-outline-secondary">Delete</button></a></td>
-            <td><a href="{{ route('users.edit', $user->id) }}"><button type="button"
-                class="btn btn-sm btn-outline-secondary">Editar usuario</button></a></td>
+            <td>{{ $report->video_id }}</td>
+            <td>{{ $report->user_id }}</td>
+            <td>{{ $report->motivo }}</td>
+            <td><a href="{{ route('reports.destroy', $report->id) }}"><button type="button"
+                class="btn btn-sm btn-outline-secondary">Quitar bloqueo</button></a></td>
         </tr>
         @endforeach
     </table>

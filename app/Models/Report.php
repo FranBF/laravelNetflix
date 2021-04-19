@@ -7,12 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
+    protected $fillable = ['video_id', 'user_id', 'motivo'];
     use HasFactory;
-    public function userReporter(){
-        return $this->belongsToMany(User::class, 'id_user_reportador');
+    public function userReporter()
+    {
+        return $this->belongsTo(User::class);
     }
 
-    public function userReported(){
-        return $this->belongsToMany(User::class, 'id_user_reportado');
+    public function userReported()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function videos()
+    {
+        return $this->belongsTo(Video::class);
     }
 }
