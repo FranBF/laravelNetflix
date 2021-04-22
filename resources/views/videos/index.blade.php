@@ -76,43 +76,7 @@
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($videos as $video)
-                {{--  @foreach($reports as $report)  --}}
-                    @if(!$video->report()->get('video_id').count($video->report()->get('video_id')) >= 1)
-                    {{--  {{ dd($video->report()->get('video_id').count($video->report()->get('video_id'))) }}  --}}
-                            {{--  <div class="card shadow-sm">
-                                <h3>{{ $video->title }}</h3>
-                                <video width="100%" height="255" controls poster="{{ asset('storage/' . $video->image) }}">
-                                    <source type="video/mp4" src="{{ asset('storage/' . $video->content) }}">
-                                </video>
-                                <div class="card-body">
-                                    <p class="card-text">{{ $video->description }}</p>
-                                    <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            @if (Auth::user()->hasRole('admin'))
-                                                <a href="{{ route('videos.destroy', $video->id) }}"><button type="button"
-                                                        id="comentar"
-                                                        class="btn btn-sm btn-outline-secondary">Delete</button></a>
-                                            @elseif(Auth::user()->hasRole('editor'))
-                                                <a href="{{ route('videos.destroy', $video->id) }}"><button type="button"
-                                                        class="btn btn-sm btn-outline-secondary">Delete</button></a>
-                                            @endif
-                                            <a href=" {{ route('comments.create', [$video->id]) }}"><button type="button"
-                                                    id="comentar" class="btn btn-sm btn-outline-secondary">Ir a
-                                                    comentarios</button></a><br>
-                                                    <a href="{{ route('reports.create', [$video->id] )}}"><button type="button"
-                                                        class="btn btn-sm btn-outline-secondary">Reportar</button></a>
-                                            @if (Auth::user()->hasRole('admin'))
-                                                <a href="{{ route('videos.edit', $video->id) }}"><button type="button"
-                                                        class="btn btn-sm btn-outline-secondary">Edit</button></a>
-                                            @elseif(Auth::user()->hasRole('editor'))
-                                                <a href="{{ route('videos.edit', $video->id) }}"><button type="button"
-                                                        class="btn btn-sm btn-outline-secondary">Edit</button></a>
-                                            @endif
-                                        </div>
-                                        <small class="text-muted">{{ $video->category }}</small>
-                                    </div>
-                                </div>
-                            </div>  --}}
+                    @if(!$video->report()->get('video_id').count($video->report()->get('video_id')) != 1)
                     @else
                     <div class="card shadow-sm">
                         <h3>{{ $video->title }}</h3>
@@ -149,7 +113,6 @@
                         </div>
                     </div>
                     @endif
-                    {{--  @endforeach  --}}
                 @endforeach
             </div>
 
