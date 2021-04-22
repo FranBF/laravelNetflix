@@ -76,7 +76,7 @@
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 @foreach ($videos as $video)
-                    @if(!$video->report()->get('video_id').count($video->report()->get('video_id')) != 1)
+                    @if(!$video->report()->get('video_id').count($video->report()->get('video_id')) >= 1)
                     @else
                     <div class="card shadow-sm">
                         <h3>{{ $video->title }}</h3>
